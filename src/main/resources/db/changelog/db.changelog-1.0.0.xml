@@ -1,117 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="create-report-table" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <createTable tableName="REPORT" tablespace="JISAU001">
-            <column name="REPORT_ID" type="NUMBER">
-                <constraints primaryKey="true" primaryKeyName="REPORT_PK" nullable="false"
-                    primaryKeyTablespace="JISAI001"/>
+    <changeSet id="create-test-case-table" author="DEMO" logicalFilePath="db.changelog-1.0.0.xml">
+        <createTable tableName="TEST_CASE">
+            <column name="ID" type="NUMBER" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="TESTCASE_PK" nullable="false"/>
             </column>
-            <column name="REPORT_NAME_EN" type="VARCHAR2(100)">
+            <column name="NAME" type="VARCHAR2(1000)">
                 <constraints nullable="false"/>
             </column>
-            <column name="REPORT_NAME_DE" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="REPORT_NAME_JASPER" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="REPORT_FILE" type="BLOB">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DISPLAY_GROUP_EN" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DISPLAY_GROUP_DE" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="TARGET" type="VARCHAR2(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ADDITIONAL_RIGHTS_NEEDED" type="VARCHAR2(2000)"/>
-            <column name="CREATION_TIMESTAMP" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="MODIFICATION_TIMESTAMP" type="TIMESTAMP"/>
-            <column name="CREATION_TIMESTAMP_CJIS" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_BY_CJIS" type="VARCHAR2(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="MODIFICATION_TIMESTAMP_CJIS" type="TIMESTAMP"/>
-            <column name="MODIFIED_BY_CJIS" type="VARCHAR2(255)"/>
-            <column name="VERSION_CJIS" type="NUMBER">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="create-input-control-mapping-table" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <createTable tableName="INPUT_CONTROL_MAPPING" tablespace="JISAU001">
-            <column name="MAPPING_ID" type="NUMBER">
-                <constraints primaryKey="true" primaryKeyName="INPUT_CONTROL_MAPPING_PK" nullable="false"
-                    primaryKeyTablespace="JISAI001"/>
-            </column>
-            <column name="INPUT_CONTROL_NAME_EN" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="INPUT_CONTROL_NAME_DE" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="INPUT_CONTROL_NAME_JASPER" type="VARCHAR2(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DISPLAY_TYPE" type="NUMBER">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CONTENT_SIZE" type="NUMBER"/>
-            <column name="REGULAR_EXPRESSION" type="VARCHAR2(100)"/>
-            <column name="PREFILL_SQL" type="VARCHAR2(2000)"/>
-            <column name="REPORT_ID" type="NUMBER">
-                <constraints nullable="false"/>
-            </column>
-            <column name="IS_MANDATORY " type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="IS_MANDATORY_WITH" type="VARCHAR2(100)"/>
-            <column name="DEFAULT_VALUE" type="VARCHAR2(100)"/>
-            <column name="INPUT_CONTROL_ORDER" type="NUMBER"/>
-            <column name="CREATION_TIMESTAMP" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="input-control-mapping-table-foreign-key" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <addForeignKeyConstraint baseTableName="INPUT_CONTROL_MAPPING" baseColumnNames="REPORT_ID"
-            constraintName="INPUT_CONTROL_MAPPING_REPORT_FK" referencedTableName="REPORT"
-            referencedColumnNames="REPORT_ID"/>
-    </changeSet>
-
-    <changeSet id="create-plant-table" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <createTable tableName="PLANT" tablespace="JISAU001">
-            <column name="ID" type="NUMBER">
-                <constraints primaryKey="true" primaryKeyName="PLANT_PK" nullable="false"
-                    primaryKeyTablespace="JISAI001"/>
-            </column>
-            <column name="PLANT_NUMBER" type="VARCHAR2(4)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PLANT_NAME" type="VARCHAR2(100)">
+            <column name="STATUS" type="VARCHAR2(9)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     
-    <changeSet id="add-unique-constraints-to-report-table" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <addUniqueConstraint tableName="REPORT" columnNames="REPORT_NAME_JASPER" constraintName="REPORT_NAME_JASPER_UQ" />
-    </changeSet>
-
-    <changeSet id="add-unique-constraints-to-plant-table" author="VDS" logicalFilePath="db.changelog-1.0.0.49.xml">
-        <addUniqueConstraint tableName="PLANT" columnNames="PLANT_NUMBER" constraintName="PLANT_NUMBER_UQ" />
-    </changeSet>
 
 </databaseChangeLog>

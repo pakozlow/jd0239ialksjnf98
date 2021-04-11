@@ -1,4 +1,4 @@
-package com.example.springdemo.integration.inbound.rest.testcase;
+package com.example.springdemo.controller.testcase;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

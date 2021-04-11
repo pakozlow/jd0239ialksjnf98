@@ -11,6 +11,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -24,8 +26,10 @@ public class TestCaseEntity {
     @GeneratedValue
     private Long id;
 
+    @NotBlank
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TestCaseStatus status;
 }
